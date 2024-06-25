@@ -6,7 +6,7 @@
 */
 function currentPage(string $path) : string
 {
-    $routes = ['login', '/', '/about', '/home', '/post', '/registration', '/contact'];
+    $routes = ['login', '/', '/about', '/home', '/post', '/registration', '/contact', '/login', '/logout', '/404'];
 
     foreach ($routes as $rout) {
         if($rout === $path) {
@@ -17,6 +17,9 @@ function currentPage(string $path) : string
             }
         }
     }
-    header('HTTP/1.0 404 Not Found');
+    header('HTTP/1.0 404 Not Found');// чи потрібен тут такий заголовок? це ж вже при обробці заголовків в класі Reguest ми його оброблюємо
+    //header("Location: /"); //Звучить більш логічніше
     return "This route has not created!";
+
+
 }

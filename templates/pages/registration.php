@@ -1,4 +1,3 @@
-
 <!-- Page Header-->
 <header class="masthead" style="background-image: url(https://www.optiona.co.uk/wp-content/uploads/registration-banner.png)">
     <div class="container position-relative px-4 px-lg-5">
@@ -22,7 +21,7 @@
                     <!-- To make this form functional, sign up at-->
                     <!-- https://startbootstrap.com/solution/contact-forms-->
                     <!-- to get an API token!-->
-                    <form id="contactForm" action="process_registration.php" method="post">
+                    <form id="contactForm" action="/config/db_handler.php" method="post">
                         <div class="form-floating">
                             <input class="form-control" id="name" name="name" type="text" placeholder="Enter your name..." required />
                             <label for="name">Your Nickname</label>

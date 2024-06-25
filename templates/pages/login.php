@@ -22,6 +22,7 @@
                     <!-- To make this form functional, sign up at-->
                     <!-- https://startbootstrap.com/solution/contact-forms-->
                     <!-- to get an API token!-->
+
                     <form id="contactForm" action="process_registration" method="post">
                         <div class="form-floating">
                             <input class="form-control" id="email" name="email" type="email" placeholder="Enter your email..." required />
@@ -32,8 +33,9 @@
                             <label for="password">Password</label>
                         </div>
                         <br />
-                        <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Registration</button>
+                        <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Loh In</button>
                     </form>
+
                 </div>
             </div>
         </div>
