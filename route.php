@@ -6,7 +6,7 @@
 */
 function currentPage(string $path) : string
 {
-    $routes = ['login', '/', '/about', '/home', '/post', '/registration', '/contact', '/login', '/logout', '/404'];
+    $routes = ['/', '/about', '/home', '/post', '/registration', '/contact', '/login', '/logout', '/404'];
 
     foreach ($routes as $rout) {
         if($rout === $path) {

@@ -6,8 +6,7 @@ define("ABSOLUTPATH", $_SERVER['DOCUMENT_ROOT']);
 // Дод файли
 include_once ('route.php');
 include_once ('config/db_connection.php');
-include_once ('helpers/validators.php');
-include_once ('config/db_handler.php');
+
 
 
 // Підключення шаблону

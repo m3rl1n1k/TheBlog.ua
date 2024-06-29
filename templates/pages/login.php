@@ -23,7 +23,7 @@
                     <!-- https://startbootstrap.com/solution/contact-forms-->
                     <!-- to get an API token!-->
 
-                    <form id="contactForm" action="process_registration" method="post">
+                    <form id="contactForm" action="/config/db_handler.php" method="post">
                         <div class="form-floating">
                             <input class="form-control" id="email" name="email" type="email" placeholder="Enter your email..." required />
                             <label for="email">Email address</label>
@@ -33,7 +33,7 @@
                             <label for="password">Password</label>
                         </div>
                         <br />
-                        <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Loh In</button>
+                        <button class="btn btn-primary text-uppercase" id="submitButton" type="submit">Log In</button>
                     </form>
 
                 </div>
