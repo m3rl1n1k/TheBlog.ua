@@ -1,7 +1,9 @@
 <?php
+session_start();
 include_once ('../helpers/validators.php');
 
 if (isset($_POST)) {
+
     $result_of_validation = verificationOfFields($_POST);
 
     if (empty($result_of_validation['error'])) {
@@ -13,8 +15,12 @@ if (isset($_POST)) {
             1) Виклик метода checkUserExists, перевіряємо через запит до бази чи є в таблиці такі дані
             2) Якщо є стартуємо сесію та вписуємо ці дані в неї зі спец ключем юзер
             */
-            echo 'Це дані з логін сторінки';
+            loginUser($dbh, $result_of_validation);
+            header("location: ../");
+            exit();
         }
+    } else {
+        echo $result_of_validation['error'];
     }
 }
 

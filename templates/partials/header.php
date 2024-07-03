@@ -33,8 +33,20 @@
                 <li class="nav-item"><a class="nav-link px-lg-3 py-3 py-lg-4" href="/contact">Contact</a></li>
             </ul>
         </div>
+        <p class="navbar-in">Author: <?php  print_r($_SESSION['auth_user']['name'] ?? 'Guest');
+//var_dump($_SERVER['PHP_SELF']);
+        ?></p>
         <a class="navbar-in" href="/login">Log In</a>
         <a class="navbar-out" href="/logout">Log Out</a>
     </div>
 </nav>
 
+<!--ARRAY(1) {-->
+<!--    ["AUTH_USER"]=> ARRAY(5) {-->
+<!--            ["ID"]=> INT(10)-->
+<!--            ["EMAIL"]=> STRING(14) "BLOG@GMEIL.COM"-->
+<!--            ["NAME"]=> STRING(3) "SAM"-->
+<!--            ["PASSWORD"]=> STRING(60) "$2Y$10$NET5CGYRVBVNS3YYS3MPZEYQ7EQA/RCDQDABPKREXMSSAPC3HNM.W"-->
+<!--            ["ROLE"]=> STRING(4) "USER"-->
+<!--    }-->
+<!--}-->

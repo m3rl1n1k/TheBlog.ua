@@ -23,15 +23,15 @@
                     <!-- to get an API token!-->
                     <form id="contactForm" action="/config/db_handler.php" method="post">
                         <div class="form-floating">
-                            <input class="form-control" id="name" name="name" type="text" placeholder="Enter your name..." required />
+                            <input class="form-control" id="name" name="name" type="text" placeholder="Enter your name..." autocomplete='on' required />
                             <label for="name">Your Nickname</label>
                         </div>
                         <div class="form-floating">
-                            <input class="form-control" id="email" name="email" type="email" placeholder="Enter your email..." required />
+                            <input class="form-control" id="email" name="email" type="email" placeholder="Enter your email..." autocomplete='on' required />
                             <label for="email">Email address</label>
                         </div>
                         <div class="form-floating">
-                            <input class="form-control" id="password" name="password" type="password" placeholder="Enter your password..." required />
+                            <input class="form-control" id="password" name="password" type="password" placeholder="Enter your password..." autocomplete='on' required />
                             <label for="password">Password</label>
                         </div>
                         <br />

@@ -58,15 +58,40 @@ function checkUserExists($dbh, $result_of_validation) {
 function registerUser($dbh, $result_of_validation) {
     // Логіка реєстрації користувача
     // Вставка нового користувача в базу даних, перевірка унікальності тощо
+    //substr(bin2hex(openssl_random_pseudo_bytes(32)), 0, 32);
     $chk_email = checkUserExists($dbh, $result_of_validation);
 
     if (empty($chk_email)) {
         $query = "INSERT INTO users (name, password, email) VALUES (:name, :password, :email)";
         $stmt = $dbh->prepare($query);
-        $stmt->execute([':email' => $result_of_validation['email'], ':name' => $result_of_validation['name'], ':password' => $result_of_validation['password']]);
+        $stmt->execute([':email' => $result_of_validation['email'], ':name' => $result_of_validation['name'], ':password' => password_hash($result_of_validation['password'], PASSWORD_DEFAULT)]);
         echo 'User created!';
     } else {
         echo 'User already exists!';
+    }
+}
+
+// Авторизація
+function loginUser($dbh, $result_of_validation) {
+    /*
+    1) Отримуємо дані з методу verificationOfFields
+    2) хешуємо пароль
+    3) робимо запит до бд
+    4) хеш веріфай пароля
+    5) запуск сесії і присвожєння значення id конкретного юзера
+    */
+    $email = $result_of_validation['email'];
+    $password = $result_of_validation['password'];
+
+    $query = "SELECT * FROM users WHERE email = :email";
+    $stmt =$dbh->prepare($query);
+    $stmt->bindParam(':email', $email);
+    $stmt->execute();
+    $result = $stmt->fetch();
+
+    if ($email === $result['email'] && password_verify($password, $result['password'])) {
+        $_SESSION['auth_user'] = $result;
+        echo 'Login successful!';
     }
 
 }

@@ -1,4 +1,11 @@
 <?php
+//if (session_status() === PHP_SESSION_NONE) {
+//    session_start();
+//}
+declare(strict_types=1);
+if (isset($_SESSION['auth_user']))   {
+    session_start();
+}
 
 //Константи
 define("ABSOLUTPATH", $_SERVER['DOCUMENT_ROOT']);
@@ -6,8 +13,6 @@ define("ABSOLUTPATH", $_SERVER['DOCUMENT_ROOT']);
 // Дод файли
 include_once ('route.php');
 include_once ('config/db_connection.php');
-
-
 
 // Підключення шаблону
 $page = currentPage($_SERVER['REQUEST_URI']);
