@@ -1,17 +1,23 @@
 <?php
-//if (session_status() === PHP_SESSION_NONE) {
-//    session_start();
-//}
 declare(strict_types=1);
-if (isset($_SESSION['auth_user']))   {
+if (session_status() === PHP_SESSION_NONE) {
     session_start();
 }
+
+//if (!isset($_SESSION['auth_user'])) {
+//    session_start();
+//    echo "session_start";
+//    var_dump($_SESSION['auth_user']);
+//} else {
+//    echo "session_end";
+//}
 
 //Константи
 define("ABSOLUTPATH", $_SERVER['DOCUMENT_ROOT']);
 
 // Дод файли
 include_once ('route.php');
+include_once ('helpers/validators.php');
 include_once ('config/db_connection.php');
 
 // Підключення шаблону

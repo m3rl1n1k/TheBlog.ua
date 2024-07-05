@@ -1,5 +1,5 @@
 <?php
-$dbh = include_once ('../config/db_connection.php');
+$dbh = include_once ('config/db_connection.php');
 // Валідація полів. В іделі потрібно створити загальний клас для перевірки полів, без вказівки ключів масива
 function verificationOfFields(array $fields) : array
 {
@@ -94,4 +94,24 @@ function loginUser($dbh, $result_of_validation) {
         echo 'Login successful!';
     }
 
+}
+
+function writePost($dbh, $result_of_validation, $user_id) {
+
+    $query = "INSERT INTO posts (id_user, title, content) VALUES (:id_user, :title, :content)";
+    $stmt = $dbh->prepare($query);
+    $stmt->bindParam(':id_user', $user_id);
+    $stmt->bindParam(':title', $result_of_validation['title']);
+    $stmt->bindParam(':content', $result_of_validation['content']);
+    $stmt->execute();
+}
+
+function getPosts($dbh, $id_user)
+{
+    $query = "SELECT * FROM posts WHERE id_user = :id_user";
+    $stmt = $dbh->prepare($query);
+    $stmt->bindParam(':id_user', $id_user);
+    $stmt->execute();
+    $result = $stmt->fetchAll();
+    return $result;
 }
