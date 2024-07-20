@@ -1,41 +1,32 @@
-<!-- Page Header-->
-<header class="masthead" style="background-image: url('/assets/img/home-bg.jpg')">
-    <div class="container position-relative px-4 px-lg-5">
-        <div class="row gx-4 gx-lg-5 justify-content-center">
-            <div class="col-md-10 col-lg-8 col-xl-7">
-                <div class="site-heading">
-                    <h1>Clean Blog</h1>
-                    <span class="subheading">A Blog Theme by Start Bootstrap</span>
-                </div>
-            </div>
-        </div>
-    </div>
-</header>
-
 <!-- Main Content-->
 <div class="container px-4 px-lg-5">
     <div class="row gx-4 gx-lg-5 justify-content-center">
         <div class="col-md-10 col-lg-8 col-xl-7">
             <!-- Post preview-->
             <?php
+            if(isset($_SESSION['auth_user']['id_user']) && !empty($_SESSION['auth_user']['id_user'])){
+                $dbh = include('config/db_connection.php');
+                $posts = getPosts($dbh, $_SESSION['auth_user']['id_user']);
 
-            $posts = getPosts($dbh, $_SESSION['auth_user']['id_user']);
-            foreach ($posts as $post) :?>
-            <div class="post-preview">
-                <a href="post.html">
+                foreach ($posts as $post) :?>
+                <div class="post-preview">
+                    <a href="post.html">
 
 
-                            <h2 class="post-title"><?= $post['title'] ?></h2>
-                            <h3 class="post-subtitle"><?= $post['content'] ?></h3>
-                        </a>
-                        <p class="post-meta">
-                            Posted by
-                            <a href="#!">Start Bootstrap</a>
-                            <?= $post['date'] ?>
-                        </p>
+                                <h2 class="post-title"><?= $post['title'] ?></h2>
+                                <h3 class="post-subtitle"><?= $post['content'] ?></h3>
+                            </a>
+                            <p class="post-meta">
+                                Posted by
+                                <a href="#!">Start Bootstrap</a>
+                                <?= $post['date'] ?>
+                            </p>
 
-            </div>
-            <?php endforeach;?>
+                </div>
+                <?php endforeach;?>
+            <?php } else
+                echo "You must be logged in to view this page.";
+            ?>
             <!-- Divider-->
             <hr class="my-4" />
             <div class="d-flex justify-content-end mb-4"><a class="btn btn-primary text-uppercase" href="#!">Older Posts →</a></div>

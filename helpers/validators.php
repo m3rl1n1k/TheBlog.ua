@@ -1,5 +1,10 @@
 <?php
-$dbh = include_once ('config/db_connection.php');
+
+if (!isset($dbh)) {
+    $dbh = include_once ('../config/db_connection.php');
+
+}
+
 // Валідація полів. В іделі потрібно створити загальний клас для перевірки полів, без вказівки ключів масива
 function verificationOfFields(array $fields) : array
 {
@@ -89,9 +94,15 @@ function loginUser($dbh, $result_of_validation) {
     $stmt->execute();
     $result = $stmt->fetch();
 
-    if ($email === $result['email'] && password_verify($password, $result['password'])) {
-        $_SESSION['auth_user'] = $result;
-        echo 'Login successful!';
+    if ($result) {
+        if ($email == $result['email'] && password_verify($password, $result['password'])) {
+            $_SESSION['auth_user'] = $result;
+            return true;
+        } else {
+            echo 'Wrong password or email!';
+        }
+    } else {
+        echo 'Login failed!';
     }
 
 }
@@ -108,10 +119,14 @@ function writePost($dbh, $result_of_validation, $user_id) {
 
 function getPosts($dbh, $id_user)
 {
-    $query = "SELECT * FROM posts WHERE id_user = :id_user";
+    $query = "SELECT * FROM posts AS p INNER JOIN users as u ON p.id_user = u.id_user WHERE u.id_user = :user_id";
     $stmt = $dbh->prepare($query);
-    $stmt->bindParam(':id_user', $id_user);
+    $stmt->bindParam(':user_id', $id_user, PDO::PARAM_INT);
     $stmt->execute();
-    $result = $stmt->fetchAll();
+    $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
+// SELECT * FROM users INNER JOIN profiles ON users.id = profiles.id;
+// SELECT * FROM posts INNER JOIN users ON posts.id = users.id;
+// SELECT u.id, u.name, p.vk_link FROM users AS u INNER JOIN profiles as p ON u.id = p.id WHERE u.id=2;
+// SELECT * FROM posts AS p INNER JOIN users as u ON p.id_post = u.id_user WHERE u.id_user=10;

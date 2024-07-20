@@ -15,9 +15,13 @@ if (isset($_POST)) {
             1) Виклик метода checkUserExists, перевіряємо через запит до бази чи є в таблиці такі дані
             2) Якщо є стартуємо сесію та вписуємо ці дані в неї зі спец ключем юзер
             */
-            loginUser($dbh, $result_of_validation);
-            header("location: ../");
-            exit();
+            $result_of_validation = loginUser($dbh, $result_of_validation);
+            if ($result_of_validation) {
+                header("location: /");
+                exit();
+            }
+
+
         }
     } else {
         echo $result_of_validation['error'];
