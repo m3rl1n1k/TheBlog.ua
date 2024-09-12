@@ -16,9 +16,6 @@ if (isset($_POST)){
     $valid_fields = verificationOfFields($_POST);
 
     if (!empty($valid_fields)) {
-        var_dump($valid_fields['title']);
-        var_dump($valid_fields['content']);
         $res = writePost($dbh, $valid_fields, $_SESSION['auth_user']['id_user']);
-        var_dump($res);
     }
 }

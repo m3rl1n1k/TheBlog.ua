@@ -1,4 +1,4 @@
-<?php $dbh = include_once ('config/db_connection.php'); ?>
+<?php $dbh = include_once(__DIR__ . '/../../../config/db_connection.php'); ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,7 +14,9 @@
     <link href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic" rel="stylesheet" type="text/css" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css" />
     <!-- Core theme CSS (includes Bootstrap)-->
-    <link href="/css/styles.css" rel="stylesheet" />
+    <link rel="stylesheet" href ='/../../assets/css/styles.css'>
+    
+
 </head>
 <body>
 <!-- Navigation-->
@@ -42,10 +44,10 @@
     </div>
 </nav>
 <!-- Page Header-->
-<?= $title; ?>
+<?= $title ?>
 
 <!-- Main Content-->
-<?= $content; ?>
+<?= $content ?>
 
 <!-- Footer-->
 <footer class="border-top">
@@ -86,7 +88,7 @@
 <!-- Bootstrap core JS-->
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js"></script>
 <!-- Core theme JS-->
-<script src="js/scripts.js"></script>
+<script src= <?= __DIR__ . '/../../../assets/js/scripts.js'?>></script>
 </body>
 </html>
 

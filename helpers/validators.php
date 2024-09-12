@@ -126,7 +126,3 @@ function getPosts($dbh, $id_user)
     $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $result;
 }
-// SELECT * FROM users INNER JOIN profiles ON users.id = profiles.id;
-// SELECT * FROM posts INNER JOIN users ON posts.id = users.id;
-// SELECT u.id, u.name, p.vk_link FROM users AS u INNER JOIN profiles as p ON u.id = p.id WHERE u.id=2;
-// SELECT * FROM posts AS p INNER JOIN users as u ON p.id_post = u.id_user WHERE u.id_user=10;

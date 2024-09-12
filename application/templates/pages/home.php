@@ -5,7 +5,10 @@
             <!-- Post preview-->
             <?php
             if(isset($_SESSION['auth_user']['id_user']) && !empty($_SESSION['auth_user']['id_user'])){
-                $dbh = include('config/db_connection.php');
+                $dbh = include(__DIR__ . '/../../../config/db_connection.php');
+                
+                var_dump($dbh);
+              
                 $posts = getPosts($dbh, $_SESSION['auth_user']['id_user']);
 
                 foreach ($posts as $post) :?>
@@ -18,6 +21,7 @@
                             </a>
                             <p class="post-meta">
                                 Posted by
+                                <b><u> <?= $post['name'] ?> </u></b>
                                 <a href="#!">Start Bootstrap</a>
                                 <?= $post['date'] ?>
                             </p>
