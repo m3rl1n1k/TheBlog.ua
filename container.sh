@@ -1,7 +1,6 @@
 #!/bin/bash
 
 # shellcheck disable=SC2034
-FILE=bulid.lock
 COMMAND=$1
 
   if [[ $COMMAND == "start" ]]; then
