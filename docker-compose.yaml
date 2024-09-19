@@ -1,0 +1,38 @@
+services:
+  php:
+    extra_hosts:
+      host.docker.internal: host-gateway
+    container_name: php_TheBlog.ua
+    build:
+      context: ./
+      dockerfile: Docker/php/Dockerfile
+      args:
+        WORKDIR: ${WORKDIR}
+    environment:
+      WORKDIR: ${WORKDIR}
+      PHP_IDE_CONFIG: serverName=docker
+    volumes:
+      - ./:${WORKDIR}
+  nginx:
+    image: nginx:latest
+    container_name: nginx_TheBlog.ua
+    environment:
+      HTTP_PORT: ${HTTP_PORT}
+      HTTPS_PORT: ${HTTPS_PORT}
+    ports:
+      - ${HTTP_PORT}:80
+      - ${HTTPS_PORT}:443
+    volumes:
+      - ./:${WORKDIR}
+      - ./Docker/nginx:/etc/nginx/conf.d
+      - ./logs/nginx:/var/log/nginx
+  db_mysql:
+    image: mysql:latest
+    container_name: mysql_TheBlog.ua
+    ports:
+      - ${MYSQL_PORT}:3306
+    environment:
+      MYSQL_ROOT_PASSWORD: ${MYSQL_ROOT_PASSWORD:-rootpass}
+      MYSQL_DATABASE: ${MYSQL_DATABASE:-project_db}
+      MYSQL_USER: ${MYSQL_USER:-dbuser}
+      MYSQL_PASSWORD: ${MYSQL_PASSWORD:-pass4dbuser}

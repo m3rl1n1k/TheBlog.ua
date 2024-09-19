@@ -2,6 +2,8 @@
 
 namespace App\Core;
 
+use App\Core\Exceptions\RouteNotFoundException;
+
 class Route {
     
     public static array $route = [];
@@ -12,32 +14,32 @@ class Route {
         self::$routes[$path] = $route;
     }
 
-    public static function getRouters(): array 
-    {
-        return self::$routes;
-    }
+//    public static function getRouters(): array
+//    {
+//        return self::$routes;
+//    }
 
-    public static function matchRoute(string $url): bool 
+    private static function matchRoute(string $url): bool
     {
         /*
             4910
         */
+        dump($url);
         foreach(self::$routes as $pattern => $value) {
             if(preg_match("#$pattern#i", $url, $matches)) {
-                dump($matches);
                 foreach($matches as $k => $a) {
                     if(is_string($k)) {
                         $route[$k] = $a;
                     }
                 }
 
-                if (!isset($route['controller'])) {
-                    $route['controller'] = 'Home';
-                }
-
-                if (!isset($route['action'])) {
-                    $route['action'] = 'index';
-                }
+//                if (!isset($route['controller'])) {
+//                    $route['controller'] = 'Home';
+//                }
+//
+//                if (!isset($route['action'])) {
+//                    $route['action'] = 'index';
+//                }
 
                 self::$route = $route;
                 return true;
@@ -46,11 +48,14 @@ class Route {
         }
         return false;
     }
-    
-    public static function dispatch(string $url)
+
+    /**
+     * @throws RouteNotFoundException
+     */
+    public static function dispatch(): void
     {
         //Силки пишуться через дефіс?
-        if (self::matchRoute($url)) {
+        if (self::matchRoute(Request::url())) {
 
             $controller = 'App\\Classes\\Controllers\\Controller' . ucfirst(self::$route['controller']);
             $action = self::$route['action'];
@@ -67,9 +72,13 @@ class Route {
                 echo "Method $action() has not been!";
             }
         } else {
-            $controller = new class404();
-            $controller->$action();
+            throw new RouteNotFoundException('Route not found!');
 
         }
+    }
+
+    public static function runRouter(): void
+    {
+        require_once ROOT_PATH . 'application/config/routes.php';
     }
 }

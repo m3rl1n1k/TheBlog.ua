@@ -1,5 +1,8 @@
 <?php
 
+return[
+  "mode" => "dev",
+];
 /*
 У конфігураційному файлі ми можемо зберігати налаштування фреймворку, наприклад, ми можемо зберігати ім’я нашої програми, шлях кореня та, звичайно, параметри підключення до бази даних:
 */
@@ -8,7 +11,7 @@
 define('SITE_NAME', 'TheBlog.ua');
 
 //App Root
-define('APP_ROOT', dirname(dirname(__FILE__)));
+define('APP_ROOT', dirname(__FILE__, 2));
 define('URL_ROOT', '/');
 define('URL_SUBFOLDER', '');
 
