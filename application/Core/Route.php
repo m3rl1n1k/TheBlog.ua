@@ -2,83 +2,50 @@
 
 namespace App\Core;
 
-use App\Core\Exceptions\RouteNotFoundException;
 
-class Route {
-    
-    public static array $route = [];
+class Route
+{
+    public function __construct()
+    {
+        require_once ROOT_PATH . 'application/config/routes.php';
+    }
     public static array $routes = [];
 
-    public static function add($path, $route = []): void
+    public static function add($path, $controller, $action): void
     {
-        self::$routes[$path] = $route;
+        self::$routes[$path] = [
+            'controller' => $controller,
+            'action' => $action
+        ];
     }
 
-//    public static function getRouters(): array
-//    {
-//        return self::$routes;
-//    }
-
-    private static function matchRoute(string $url): bool
+    private function call(string $controller, string $action, array $args): void
     {
-        /*
-            4910
-        */
-        dump($url);
-        foreach(self::$routes as $pattern => $value) {
-            if(preg_match("#$pattern#i", $url, $matches)) {
-                foreach($matches as $k => $a) {
-                    if(is_string($k)) {
-                        $route[$k] = $a;
-                    }
-                }
+        $controller = new $controller;
+        call_user_func_array([$controller, $action], $args);
 
-//                if (!isset($route['controller'])) {
-//                    $route['controller'] = 'Home';
-//                }
-//
-//                if (!isset($route['action'])) {
-//                    $route['action'] = 'index';
-//                }
-
-                self::$route = $route;
-                return true;
-            }
-
-        }
-        return false;
     }
 
     /**
-     * @throws RouteNotFoundException
      */
     public static function dispatch(): void
     {
+        $routeClass = new Route();
         //Силки пишуться через дефіс?
-        if (self::matchRoute(Request::url())) {
+        $controller = $action = null;
+        $arguments = [];
+        $inputUrl = Request::url();
 
-            $controller = 'App\\Classes\\Controllers\\Controller' . ucfirst(self::$route['controller']);
-            $action = self::$route['action'];
-  
-            if(class_exists($controller)) {
-                $controller = new $controller;
-            } else {
-                echo "Class $controller has not been!";
+        foreach (self::$routes as $routeUri => $route) {
+
+            if ($routeUri === $inputUrl) {
+
+                $controller = $route['controller'];
+                $action = $route['action'];
+                break;
             }
-
-            if(method_exists($controller, $action)) {
-                $controller->$action();
-            } else {
-                echo "Method $action() has not been!";
-            }
-        } else {
-            throw new RouteNotFoundException('Route not found!');
-
         }
-    }
-
-    public static function runRouter(): void
-    {
-        require_once ROOT_PATH . 'application/config/routes.php';
+        // Викликаємо метод контролера з переданими аргументами
+        $routeClass->call($controller, $action, $arguments);
     }
 }

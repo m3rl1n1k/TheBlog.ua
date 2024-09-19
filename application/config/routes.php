@@ -1,10 +1,9 @@
 <?php
 namespace App\Config;
 
+use App\Controllers\HomeController;
 use App\Core\Route;
 
-Route::add('^$', ['controller' => 'Home', 'action' => 'index']);
-Route::add('^(?P<controller>[a-z-]+)/?(?P<action>[a-z-]+)?$');
+Route::add('^$', HomeController::class, 'index');
+Route::add('/home-controller', HomeController::class, 'index');
 
-
-Route::dispatch();
