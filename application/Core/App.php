@@ -3,8 +3,6 @@
 namespace App\Core;
 
 
-use App\Core\Exceptions\RouteNotFoundException;
-
 class App
 {
 
@@ -13,12 +11,11 @@ class App
         @set_exception_handler([new ExceptionListener(), 'handler']);
     }
 
-    /**
-     * @throws RouteNotFoundException
-     */
+
     public function run(): void
     {
         // todo: logic for run app
+        Config::getValue('routes');
         Route::dispatch();
     }
 

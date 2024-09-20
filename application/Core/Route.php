@@ -5,10 +5,6 @@ namespace App\Core;
 
 class Route
 {
-    public function __construct()
-    {
-        require_once ROOT_PATH . 'application/config/routes.php';
-    }
     public static array $routes = [];
 
     public static function add($path, $controller, $action): void
@@ -19,7 +15,7 @@ class Route
         ];
     }
 
-    private function call(string $controller, string $action, array $args): void
+    private static function call(string $controller, string $action, array $args): void
     {
         $controller = new $controller;
         call_user_func_array([$controller, $action], $args);
@@ -30,7 +26,6 @@ class Route
      */
     public static function dispatch(): void
     {
-        $routeClass = new Route();
         //Силки пишуться через дефіс?
         $controller = $action = null;
         $arguments = [];
@@ -46,6 +41,6 @@ class Route
             }
         }
         // Викликаємо метод контролера з переданими аргументами
-        $routeClass->call($controller, $action, $arguments);
+        self::call($controller, $action, $arguments);
     }
 }
