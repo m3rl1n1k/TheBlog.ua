@@ -1,4 +1,5 @@
-
+<?php require_once ROOT_PATH. 'templates/partials/base_view.php'; ?>
+<?php require_once ROOT_PATH. 'templates/pages/titles/title_contact.php'; ?>
         <!-- Page Header-->
         <header class="masthead" style="background-image: url('../../assets/img/contact-bg.jpg')">
             <div class="container position-relative px-4 px-lg-5">
@@ -74,3 +75,4 @@
                 </div>
             </div>
         </main>
+<?php require_once ROOT_PATH. 'templates/partials/footer.php'; ?>

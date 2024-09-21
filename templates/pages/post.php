@@ -1,4 +1,5 @@
-
+<?php require_once ROOT_PATH. 'templates/partials/base_view.php'; ?>
+<?php require_once ROOT_PATH. 'templates/pages/titles/title_post.php'; ?>
 
         <!-- Main Content-->
         <main class="mb-4">
@@ -38,3 +39,4 @@
             </div>
         </main>
 
+<?php require_once ROOT_PATH. 'templates/partials/footer.php'; ?>

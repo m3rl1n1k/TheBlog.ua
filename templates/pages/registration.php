@@ -1,4 +1,5 @@
-<!-- Main Content-->
+<?php require_once ROOT_PATH. 'templates/partials/base_view.php'; ?>
+<?php require_once ROOT_PATH. 'templates/pages/titles/title_registration.php'; ?><!-- Main Content-->
 <main class="mb-4">
     <div class="container px-4 px-lg-5">
         <div class="row gx-4 gx-lg-5 justify-content-center">
@@ -33,3 +34,4 @@
         </div>
     </div>
 </main>
+<?php require_once ROOT_PATH. 'templates/partials/footer.php'; ?>

@@ -2,16 +2,19 @@
 
 namespace App\Controllers;
 
-use App\Classes\Controllers\obj;
 
-class HomeController
+use App\Core\AbstractController;
+use App\Core\View;
+
+class HomeController extends AbstractController
 {
     public function __construct()
     {
     }
 
-    public function index(): void
+    public function index(): View
     {
-        print_r("This is the class HomeController");
+
+        return $this->render('pages/home');
     }
 }

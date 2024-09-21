@@ -15,7 +15,7 @@ class App
     public function run(): void
     {
         // todo: logic for run app
-        Config::getValue('routes');
+        // todo: call Container class
         Route::dispatch();
     }
 

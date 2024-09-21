@@ -5,7 +5,7 @@ namespace App\Core;
 
 class Route
 {
-    public static array $routes = [];
+    private static array $routes = [];
 
     public static function add($path, $controller, $action): void
     {
