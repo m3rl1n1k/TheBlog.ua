@@ -41,6 +41,11 @@ class Config
         return self::$instance;
     }
 
+    public static function setValue($key, $value): void
+    {
+        self::instance()->set($key, $value);
+    }
+
     public function set(string $key, $value): void
     {
         $keys = explode('.', $key);

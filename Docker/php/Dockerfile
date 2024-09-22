@@ -2,9 +2,9 @@ FROM php:8.3-fpm
 ARG WORKDIR
 WORKDIR ${WORKDIR}
 
-RUN apt-get -y update && apt-get -y install git unzip vim rsync
+RUN apt-get -y update && apt-get -y install git unzip vim rsync libyaml-dev
 
-RUN pecl install xdebug && docker-php-ext-enable xdebug;
+RUN pecl install xdebug yaml && docker-php-ext-enable xdebug yaml;
 COPY ./Docker/php/xdebug.ini /usr/local/etc/php/conf.d/xdebug.ini
 
 

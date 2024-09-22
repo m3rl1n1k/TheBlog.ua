@@ -1,0 +1,12 @@
+connection:
+  driver: mysql
+  host: db_mysql #name of container
+  database: TheBlog
+  username: TheBlog
+  password: TheBlog
+  charset: utf8
+  collation: utf8_general_ci
+  port: 3306
+
+model:
+  folder: 'application/Model'

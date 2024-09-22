@@ -8,14 +8,18 @@ class App
 
     public function __construct()
     {
-        @set_exception_handler([new ExceptionListener(), 'handler']);
+        $file = new FilePreloader();
+        $file->preload();
     }
 
 
     public function run(): void
     {
-        // todo: logic for run app
         // todo: call Container class
+        @set_exception_handler([new ExceptionListener(), 'handler']);
+
+        new DatabaseManager();
+
         Route::dispatch();
     }
 

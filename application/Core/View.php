@@ -13,7 +13,7 @@ class View
 
     public function __construct(string $template, array $data = [])
     {
-        $this->defaultPath = Config::getValue('config.view.path');
+        $this->defaultPath = ROOT_PATH . Config::getValue('config.view.path') . "/";
         $this->data = $data;
         $this->template = $template;
 
