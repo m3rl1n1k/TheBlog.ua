@@ -15,12 +15,14 @@ class App
 
     public function run(): void
     {
-        // todo: call Container class
         @set_exception_handler([new ExceptionListener(), 'handler']);
 
         new DatabaseManager();
+        $services = Config::getValue('services');
+        Container::getInstance($services);
 
         Route::dispatch();
+
     }
 
 }

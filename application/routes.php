@@ -2,12 +2,12 @@
 
 namespace App\Config;
 
-use App\Controllers\AboutController;
-use App\Controllers\ContactController;
-use App\Controllers\HomeController;
-use App\Controllers\LoginController;
-use App\Controllers\PostController;
-use App\Controllers\RegistrationController;
+use App\Controller\AboutController;
+use App\Controller\ContactController;
+use App\Controller\HomeController;
+use App\Controller\LoginController;
+use App\Controller\PostController;
+use App\Controller\RegistrationController;
 use App\Core\Route;
 
 Route::add('^$', HomeController::class, 'index');

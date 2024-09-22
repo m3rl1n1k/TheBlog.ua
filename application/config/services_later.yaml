@@ -1,0 +1,8 @@
+HomeController:
+  class: 'App\Controller\HomeController'
+  arguments:
+    - '@UserModel'
+    - '%email'
+
+UserModel:
+  class: 'App\Model\UserModel'

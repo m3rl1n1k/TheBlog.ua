@@ -15,13 +15,6 @@ class Route
         ];
     }
 
-    private static function call(string $controller, string $action, array $args): void
-    {
-        $controller = new $controller;
-        call_user_func_array([$controller, $action], $args);
-
-    }
-
     /**
      */
     public static function dispatch(): void
@@ -42,5 +35,12 @@ class Route
         }
         // Викликаємо метод контролера з переданими аргументами
         self::call($controller, $action, $arguments);
+    }
+
+    private static function call(string $controller, string $action, array $args): void
+    {
+        $controller = Container::getInstance()->get($controller);
+        call_user_func_array([$controller, $action], $args);
+
     }
 }

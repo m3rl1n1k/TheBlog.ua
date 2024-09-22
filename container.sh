@@ -10,7 +10,7 @@ COMMAND=$1
       docker compose --env-file .env.dev restart;
   fi
   if [[ $COMMAND == "stop" ]]; then
-      docker compose --env-file .env.dev stop $2;
+      docker compose --env-file .env.dev stop;
   fi
   if [[ $COMMAND == "php" ]]; then
       docker compose --env-file .env.dev exec -it "php" /bin/bash;
