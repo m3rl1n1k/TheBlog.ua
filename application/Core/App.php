@@ -18,6 +18,7 @@ class App
         @set_exception_handler([new ExceptionListener(), 'handler']);
 
         new DatabaseManager();
+
         $services = Config::getValue('services');
         Container::getInstance($services);
 
