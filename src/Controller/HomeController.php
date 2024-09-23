@@ -10,6 +10,8 @@ class HomeController extends AbstractController
 {
     public function index(): View
     {
+
+
         return $this->render('pages/home');
     }
 }

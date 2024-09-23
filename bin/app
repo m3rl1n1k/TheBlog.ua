@@ -1,0 +1,44 @@
+#! /usr/bin/env php
+<?php
+
+use App\Core\Command\Command;
+use App\Core\Config;
+use App\Core\Container;
+use App\Core\ExceptionListener;
+use App\Core\FileLoader;
+use Psr\Container\ContainerExceptionInterface;
+use Psr\Container\NotFoundExceptionInterface;
+
+const ROOT_PATH = __DIR__ . "/../";
+require_once load_file("../vendor/autoload.php");
+
+function load_file(string $path): string|array
+{
+    if (!is_file($path))
+        return str_replace('../', '', $path);
+    else {
+        return $path;
+    }
+}
+
+$argument = $argv[1];
+
+try {
+    // FileLoader
+    $loader = new FileLoader();
+    $loader->setPath(ROOT_PATH . 'src/config');
+    $loader->load();
+    //Container
+    $services = Config::getValue('services');
+    Container::getInstance($services);
+    // Custom Exception Listener
+    $listener = Container::getService(ExceptionListener::class);
+    @set_exception_handler([$listener, 'handler']);
+
+    // Run command
+    /** @var Command $command */
+    $command = Container::getService(Command::class);
+    $command->run($argument);
+} catch (NotFoundExceptionInterface|ContainerExceptionInterface $e) {
+    echo $e->getMessage();
+}

@@ -3,7 +3,9 @@
 namespace App\Core;
 
 use App\Core\Exceptions\ServiceNotFoundException;
+use Psr\Container\ContainerExceptionInterface;
 use Psr\Container\ContainerInterface;
+use Psr\Container\NotFoundExceptionInterface;
 
 class Container implements ContainerInterface
 {
@@ -22,6 +24,15 @@ class Container implements ContainerInterface
             self::$instance = new self($dependencies);
         }
         return self::$instance;
+    }
+
+    /**
+     * @throws ContainerExceptionInterface
+     * @throws NotFoundExceptionInterface
+     */
+    public static function getService($id)
+    {
+        return (self::$instance)->get($id);
     }
 
     public function get($id)

@@ -20,10 +20,10 @@ class ExceptionListener
     public function handler(Throwable $e): void
     {
 
-        $msg = match ($this->mode){
-          'dev' => $e->getMessage() . " " . $e->getLine() . " " . $e->getFile(),
-          'prod' => $e->getMessage(),
-          default => throw new ModeNotFoundException('Mode not found'." $this->mode"),
+        $msg = match ($this->mode) {
+            'dev' => $e->getMessage() . " " . $e->getFile() . " " . $e->getLine() . "\n",
+            'prod' => $e->getMessage() . "\n",
+            default => throw new ModeNotFoundException('Mode not found' . " $this->mode"),
         };
         echo $msg;
     }

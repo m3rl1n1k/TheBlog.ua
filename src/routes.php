@@ -1,7 +1,5 @@
 <?php
 
-namespace App\Config;
-
 use App\Controller\AboutController;
 use App\Controller\ContactController;
 use App\Controller\HomeController;

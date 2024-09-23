@@ -1,0 +1,14 @@
+help:
+  class: 'App\Command\HelpCommand'
+  description: 'Print Help Info'
+table:
+  create:
+    class: 'App\Command\TableCreateCommand'
+    description: 'Create table'
+  drop:
+    class: 'App\Command\DropTableCommand'
+    description: 'Drop Table'
+
+
+example:
+  description: 'php bin/app table:create'

@@ -1,4 +1,0 @@
-mode: 'dev'
-
-view:
-  path: "templates"

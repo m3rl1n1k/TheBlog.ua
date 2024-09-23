@@ -2,16 +2,15 @@
 
 namespace App\Core;
 
-class FilePreloader
+class FileLoader
 {
     private string $path;
 
     public function __construct()
     {
-        $this->path = ROOT_PATH . 'application/config';
     }
 
-    public function preload(): void
+    public function load(): void
     {
         // load files
         $dirs = scandir($this->path);
@@ -39,5 +38,10 @@ class FilePreloader
     private function makeName(string $dir): string
     {
         return explode('.', $dir)[0];
+    }
+
+    public function setPath(string $path): void
+    {
+        $this->path = $path;
     }
 }

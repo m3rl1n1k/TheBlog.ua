@@ -2,8 +2,8 @@
 
 namespace App\Controller;
 
-use App\Core\AbstractController;
-use App\Core\View;
+use src\Core\AbstractController;
+use src\Core\View;
 
 class AboutController extends AbstractController
 {

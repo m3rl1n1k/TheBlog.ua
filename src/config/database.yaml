@@ -8,5 +8,8 @@ connection:
   collation: utf8_general_ci
   port: 3306
 
+table:
+  path: 'src/Table'
+
 model:
-  folder: 'application/Model'
+  path: 'src/Model'
