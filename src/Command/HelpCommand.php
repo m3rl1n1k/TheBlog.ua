@@ -29,7 +29,7 @@ class HelpCommand implements CommandInterface
             array_walk($command, function ($command, $key) {
                 if (is_array($command)) {
                     $des = $command['description'] ?? " ";
-                    print("- " . self::ANSI_GREEN . "{$key}:" . self::ANSI_YELLOW . " $des\n");
+                    print("-" . self::ANSI_GREEN . "{$key}:" . self::ANSI_YELLOW . " $des\n");
                 }
             });
         });

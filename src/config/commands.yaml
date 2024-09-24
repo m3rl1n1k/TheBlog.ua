@@ -11,4 +11,4 @@ table:
 
 
 example:
-  description: 'php bin/app table:create'
+  description: "php bin/app table:create 'namespace of file'"
